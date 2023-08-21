@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Technical Documentation</title>
+    <link href="./style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav id="navbar" class="hidden">
+      <header><h1>JavaScript Section 9</h1></header>
+      <ul>
+        <li>
+          <a class="nav-link" href="#Destructuring_Array"
+            >Destructuring Array</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="#Destructuring_Object"
+            >Destructuring Object</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="#Spread_Operator">Spread Operator</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Rest_Parameter">Rest Parameter</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Short_Circuiting">Short Circuiting</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#Primitive_Types_vs_Reference_Types"
+            >Primitive Types vs Reference Types</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <main id="main-doc">
+      <section class="main-section" id="Destructuring_Array">
+        <header><h2>Destructuring Array</h2></header>
+        <div class="content">
+          <p>
+            This is an ES6 feature. This extracts values from an array and
+            assign it with variables
+          </p>
+          <h4>Synax</h4>
+          <code class="inline">Const [variable 1, variable2,...] = array</code>
+          <h4>Example</h4>
+          <code class="inline">const [x, y, z] = [1, 2, 3]</code>
+          <h4>Application</h4>
+          <ol>
+            <li>Mutate Variable</li>
+            <pre><code>let [x, y, z] = [1, 2, 3];
+       [x, y] = [y, x];
+       // First, x = 1, y = 2. Then, x = 2, y =1</code></pre>
+            <li>Destruct Nested Array</li>
+            <pre><code>const [a, , [c, d]] = [1, 2, [3, 4]]
+      // a = 1, skipped value 2, c = 3, d = 4
+      </code></pre>
+            <li>Set default value</li>
+            <pre><code>const [a, b, c, d = 100] = [1,2] 
+      // a = 1, b = 2 , c = undefined, d = 100</code></pre>
+          </ol>
+        </div>
+      </section>
+
+      <section class="main-section" id="Destructuring_Object">
+        <header><h2>Destructuring Object</h2></header>
+        <div class="content">
+          <p>Similar to Destructuring Array</p>
+          <h4>Synax</h4>
+          <code class="inline">Const [variable 1, variable2,...] = array</code>
+          <h4>Example</h4>
+          <code class="inline">const [x, y, z] = [1, 2, 3]</code>
+        </div>
+      </section>
+
+      <section class="main-section" id="Spread_Operator">
+        <header><h2>Spread Operator</h2></header>
+        <div class="content">
+          <p>
+            The spread (...) syntax allows an iterable, such as an array or
+            string, to be expanded in places where zero or more arguments (for
+            function calls) or elements (for array literals) are expected. In an
+            object literal, the spread syntax enumerates the properties of an
+            object and adds the key-value pairs to the object being created.
+          </p>
+          <h4>Example</h4>
+          <pre class="inline"><code>const array = [5, 6, 7, 8]
+    console.log(...array)
+    // 5 6 7 8
+</code></pre>
+        </div>
+      </section>
+
+      <section class="main-section" id="Rest_Parameter">
+        <header><h2>Rest Parameter</h2></header>
+        <div class="content">
+          <p>Spread syntax "expands" an array into its elements</p>
+          <h4>Synax</h4>
+          <code class="inline">const [...rest] = array</code>
+          <h4>Example</h4>
+          <pre class="inline"><code>const [a, b, ...others] = [1, 2, 3, 4, 5];
+            console.log(others);
+            // a = 1, b = 2, others = [3 4 5]
+          </code></pre>
+        </div>
+      </section>
+
+      <section class="main-section" id="Short_Circuiting">
+        <header><h2>Short Circuiting</h2></header>
+        <div class="content">
+          <p>
+            short-circuiting is the evaluation of an expression from left to
+            right with <code>||</code>, <code>&&</code> and
+            <code>??</code> operators. If the condition is met and the rest of
+            the conditions won't affect the already evaluated result, the
+            expression will short-circuit and return that result (value)
+          </p>
+          <ol>
+            <li>OR Operator (||)</li>
+            <p>
+              OR operator will return first truthy value of all operands or last
+              value if all of them are falsy.
+            </p>
+            <p>Used to set default value</p>
+            <pre><code> const object = {
+                firstName: "Vu",
+                lastName: "Son",
+            }
+            // Check if object has age property, if not, set default value to 20
+            const age = object.age || 20;
+            console.log(age)
+              </code></pre>
+            <li>AND Operator (&&)</li>
+            <p>
+              AND operator only return first falsy value or last value if all of
+              them are truthy.
+            </p>
+            <p>Used to execute second operand if first operand is true</p>
+            <pre><code> function greetUser(username) {
+                // If username is defined and not an empty string, greet the user
+                username && console.log(`Hello, ${username}!`);
+              }
+              
+              greetUser('Alice');     // Output: Hello, Alice!
+              greetUser('');          // No output because the condition is false
+              greetUser(undefined);   // No output because the condition is false              
+              </code></pre>
+            <li>Nullish Operator (??)</li>
+            <p>
+              Nullish operator will return first truthy value of all operands or
+              last value if all of them are falsy. However, it only considers
+              null and undefined as falsy value
+            </p>
+            <pre><code> const object = {
+                firstName: "Vu",
+                lastName: "Son",
+            }
+            object.age = 0;
+
+            // If we use OR operand, the result will be 20. It's not logic because we assgined age to 0. Instead, we use nullish to evaluate operands in case the value might be 0
+
+            const ageVu = object.age ?? 20;
+            console.log(age); // 0
+              </code></pre>
+          </ol>
+        </div>
+      </section>
+
+      <section class="main-section" id="Primitive_Types_vs_Reference_Types">
+        <header><h2>Primitive Types vs Reference Types</h2></header>
+        <div class="content">
+          <p>In memory management, there are 2 types:</p>
+          <ul>
+            <li>
+              Primitive Values are called Primitive Types: They are stored in
+              Execution Context in Callstack
+            </li>
+            <li>
+              Objects (including Arrays, Functions,...) are called Reference
+              Types: They are stored in Heap
+            </li>
+          </ul>
+          <img src="./Screenshot at Aug 20 20-16-41.png" />
+          <h4>Example</h4>
+          <img src="./Screenshot at Aug 20 20-21-20.png" />
+          <ul>
+            <li>In Primitive Values</li>
+            <ol>
+              <li>
+                JavaScript creates an unique identifier with the variable name
+              </li>
+              <li>
+                Then a piece of memory will be allocated with an address (00001)
+              </li>
+              <li>
+                The value is stored in memory at that address (Value 30 will be
+                specified at memory address 0001)
+              </li>
+              <p>
+                <b
+                  >Note: Identifier actually points to the address and doesn’t
+                  points to value itself. (So we say age is equal to memory
+                  address 0001 which holds the value of 30)</b
+                >
+              </p>
+              <li>
+                Next, oldAge is declared equal to age (oldAge points to same
+                memory address 0001 which holds value of 30)
+              </li>
+              <li>
+                Now age is set to 31. Because the value at a memory address
+                can’t be changed, new piece of memory is allocated (age
+                identifier now points to new address 0002 which holds value of
+                31)
+              </li>
+              <li>
+                When we log both variables, they return exact values that we
+                expect
+              </li>
+              <br />
+            </ol>
+            <li>In Reference Values</li>
+            <ol>
+              <li>
+                When me object is created, it's stored in Heap which has memory
+                address and value itself
+              </li>
+              <li>
+                Identifier “me” doesn’t point directly to the newly created
+                memory address D30F in Heap. It points to a new piece of memory
+                that’s created in Call Stack, then this memory points to address
+                in Heap by using memory address (in Heap) as value (in Call
+                Stack).
+              </li>
+              <li>
+                In short, A piece of memory in Call Stack has a reference to
+                piece of memory in Heap which holds me object. This why objects
+                are called Reference Types.
+              </li>
+              <li>
+                Object can be too large to store in Call Stack, so it’s stored
+                in Heap (like an unlimited memory pool)
+              </li>
+              <li>
+                On next line, new variable friend is set to equal to me object.
+                Friend identifier points to same address as me identifier in
+                Stack. It contains reference to object’s value in Heap
+              </li>
+              <li>
+                Now property age in friend is set to 27. Object is found in
+                Heap, 30 is changed to 27. Although friend was defined by const,
+                we can manipulate the object. (Because we not change value in
+                memory, it’s still D30F, we only change value in Heap)
+              </li>
+              <p>
+                <b
+                  >Note: Const is immutable for primitive values but not for
+                  references values</b
+                >
+              </p>
+              <li>
+                As a result changing from Heap, both me and friend object has
+                weird behavior when age are both changes to 27
+              </li>
+              <li>
+                In summary, two identifiers both point to same memory address
+                (0003) which holds value of D30F. This value D30F points to
+                reference in memory Heap
+              </li>
+            </ol>
+          </ul>
+          <h5>
+            Question: How to copy an object and change its property value
+            without changing origina's ?
+          </h5>
+          <p>
+            Answer: We use <code>Object.assign()</code> method or Spread
+            Operator. Both ways create a shallow copy of objects (If we change
+            nested arrays, objects inside an object, it will change the original
+            values)
+          </p>
+        </div>
+      </section>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
